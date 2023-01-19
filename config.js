@@ -12,13 +12,12 @@ const mysqlConnetion = mysql.createConnection({
 
 const mysqlConnetion = mysql.createConnection({
         
-    host: process.env.HOST ,
-    user : 'root' ,
-    password : process.env.PASSWORD,
-    database : process.env.DATABASE 
+    host: process.env.DB_HOST,
+    user : process.env.DB_USER ,
+    password : process.env.DB_PASSWORD,
+    database : process.env.DB_DATABASE 
     
 });
-
 
 mysqlConnetion.connect( err => {
     if(err){

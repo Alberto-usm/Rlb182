@@ -6,4 +6,4 @@ require ('dotenv').config({path: '.env'})
 const server = http.createServer(app);
 
 //Server
-server.listen(process.env.PORT);
+server.listen(process.env.DB_PORT);
