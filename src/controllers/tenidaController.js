@@ -4,7 +4,7 @@ const {promisify} = require('util');
 
 
 const viewTenida = (req, res) => {
-    mysqlConnetion.query('SELECT * FROM TENIDA', (err, rows, fields) =>{
+    mysqlConnetion.query('SELECT * FROM Tenida', (err, rows, fields) =>{
         if(!err){
             res.json(rows);
         }else{
@@ -15,7 +15,7 @@ const viewTenida = (req, res) => {
 
 const viewOneTenida = (req, res) => {
    
-       mysqlConnetion.query('SELECT * FROM TENIDA WHERE idTenida = ?',[req.params.id],
+       mysqlConnetion.query('SELECT * FROM Tenida WHERE idTenida = ?',[req.params.id],
        (err,rows) => {
         if(!err){
             res.json(rows);
@@ -26,7 +26,7 @@ const viewOneTenida = (req, res) => {
 };
 const changeTenida = ( req, res) => {
         
-    mysqlConnetion.query('UPDATE TENIDA SET ? WHERE idTenida = ?', [req.body, req.params.id],
+    mysqlConnetion.query('UPDATE Tenida SET ? WHERE idTenida = ?', [req.body, req.params.id],
     (err, rows) =>{
         if(!err){
             res.json(rows);
@@ -38,7 +38,7 @@ const changeTenida = ( req, res) => {
 
 const insertTenida =  async (req, res) => {
                     
-   mysqlConnetion.query('INSERT INTO TENIDA SET ?' , [req.body],
+   mysqlConnetion.query('INSERT INTO Tenida SET ?' , [req.body],
     (err, rows) =>{
         if(!err){
             res.json(rows);
@@ -50,7 +50,7 @@ const insertTenida =  async (req, res) => {
 
 const deleteTenida = (req, res) => {
     
-    mysqlConnetion.query('DELETE FROM TENIDA WHERE idTenida = ?', [req.params.id],
+    mysqlConnetion.query('DELETE FROM Tenida WHERE idTenida = ?', [req.params.id],
     (err, rows) =>{
         if(!err){
             res.json(rows);

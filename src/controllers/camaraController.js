@@ -4,7 +4,7 @@ const {promisify} = require('util');
 
 
 const viewCamara = (req, res) => {
-    mysqlConnetion.query('SELECT * FROM CAMARA', (err, rows, fields) =>{
+    mysqlConnetion.query('SELECT * FROM Camara', (err, rows, fields) =>{
         if(!err){
             res.json(rows);
         }else{
@@ -15,7 +15,7 @@ const viewCamara = (req, res) => {
 
 const viewOneCamara = (req, res) => {
    
-       mysqlConnetion.query('SELECT * FROM CAMARA WHERE idCamara = ?',[req.params.id],
+       mysqlConnetion.query('SELECT * FROM Camara WHERE idCamara = ?',[req.params.id],
        (err,rows) => {
         if(!err){
             res.json(rows);
@@ -26,7 +26,7 @@ const viewOneCamara = (req, res) => {
 };
 const changeCamara = ( req, res) => {
         
-    mysqlConnetion.query('UPDATE CAMARA SET ? WHERE idCamara = ?', [req.body, req.params.id],
+    mysqlConnetion.query('UPDATE Camara SET ? WHERE idCamara = ?', [req.body, req.params.id],
     (err, rows) =>{
         if(!err){
             res.json(rows);
@@ -38,7 +38,7 @@ const changeCamara = ( req, res) => {
 
 const insertCamara =  async (req, res) => {
                     
-   mysqlConnetion.query('INSERT INTO CAMARA SET ?' , [req.body],
+   mysqlConnetion.query('INSERT INTO Camara SET ?' , [req.body],
     (err, rows) =>{
         if(!err){
             res.json(rows);
@@ -50,7 +50,7 @@ const insertCamara =  async (req, res) => {
 
 const deleteCamara = (req, res) => {
     
-    mysqlConnetion.query('DELETE FROM CAMARA WHERE idCamara = ?', [req.params.id],
+    mysqlConnetion.query('DELETE FROM Camara WHERE idCamara = ?', [req.params.id],
     (err, rows) =>{
         if(!err){
             res.json(rows);

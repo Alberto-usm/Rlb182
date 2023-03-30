@@ -1,12 +1,13 @@
 const session = require('express-session');
 const mysql = require('mysql2');
 require('dotenv').config({path: './.env'})
+
 /*
 const mysqlConnetion = mysql.createConnection({
     host:    'localhost',
     user: 'labuidrd_acabello',
-    password: 'rlb182Sfu',
-    database: 'labuidrd_rlb182'
+    password: 'AltRlb182@23',
+    database: 'labuidrd_logia'
 });
 */
 
@@ -15,8 +16,7 @@ const mysqlConnetion = mysql.createConnection({
     host: process.env.DB_HOST,
     user : process.env.DB_USER ,
     password : process.env.DB_PASSWORD,
-    database : process.env.DB_DATABASE || 'rlb182',
-    puerto : process.env.DB_PUERTO || 3306 
+    database : process.env.DB_DATABASE 
     
 });
 
@@ -26,7 +26,7 @@ mysqlConnetion.connect( err => {
         return;
 
     }else{
-        console.log('DB OK');
+        console.log('Data Base OK');
     }
 });
 

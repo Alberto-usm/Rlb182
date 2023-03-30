@@ -7,7 +7,7 @@ const app = express();
 const session = require("express-session");
 
 const actividadRoute = require('./src/routes/actividad');
-const userRoute = require('./src/routes/user');
+const usuarioRoute = require('./src/routes/usuario');
 const documentoRoute = require('./src/routes/documento');
 const cargoRoute = require('./src/routes/cargo');
 const gradoRoute = require('./src/routes/grado');
@@ -21,16 +21,17 @@ const tenidaRouter = require('./src/routes/tenida');
 
 
 //para procesar datos enviados desde forms
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
 
-
+app.get('/', (req, res) => res.json('Servidor Running'));
+  
 app.use('/actividad',actividadRoute);
-app.use('/user',userRoute);
 app.use('/cargo',cargoRoute);
+app.use('/usuario',usuarioRoute);
 app.use('/grado',gradoRoute);
 app.use('/camara',camaraRoute);
 app.use('/documento',documentoRoute);

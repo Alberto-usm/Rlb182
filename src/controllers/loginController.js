@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 
 const getUsuario = async (req, res) => {
     
-    mysqlConnetion.query('SELECT * FROM USER',(err,rows) => {       
+    mysqlConnetion.query('SELECT * FROM Usuario',(err,rows) => {       
      if(!err){
          res.json(rows);         
      }else{
@@ -21,7 +21,7 @@ const singin  = async(req, res) => {
    const  { user , password} = req.body;  
    const datos = req.body; 
         
-   mysqlConnetion.query('SELECT * FROM USER WHERE rutUser=?',   
+   mysqlConnetion.query('SELECT * FROM Usuario WHERE rutUser=?',   
    [user], function(err, rows, fields) {
        if(rows.length > 0){
            console.log(rows[0])

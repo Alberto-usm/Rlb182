@@ -4,7 +4,7 @@ const {promisify} = require('util');
 
 
 const viewActividad = async (req, res) => {
-    mysqlConnetion.query('SELECT * FROM ACTIVIDAD', (err, rows, fields) =>{
+    mysqlConnetion.query('SELECT * FROM Actividad', (err, rows, fields) =>{
         if(!err){
             res.json(rows);
         }else{
@@ -15,7 +15,7 @@ const viewActividad = async (req, res) => {
 
 const viewOneActividad= (req, res) => {
    
-       mysqlConnetion.query('SELECT * FROM ACTIVIDAD WHERE idActividad = ?',[req.params.id],
+       mysqlConnetion.query('SELECT * FROM Actividad WHERE idActividad = ?',[req.params.id],
        (err,rows) => {
         if(!err){
             res.json(rows);
@@ -26,7 +26,7 @@ const viewOneActividad= (req, res) => {
 };
 const changeActividad = ( req, res) => {
         
-    mysqlConnetion.query('UPDATE ACTIVIDAD SET ? WHERE idActividad = ?', [req.body, req.params.id],
+    mysqlConnetion.query('UPDATE Actividad SET ? WHERE idActividad = ?', [req.body, req.params.id],
     (err, rows) =>{
         if(!err){
             res.json(rows);
@@ -38,7 +38,7 @@ const changeActividad = ( req, res) => {
 
 const insertActividad =  async (req, res) => {
                     
-   mysqlConnetion.query('INSERT INTO ACTIVIDAD SET ?' , [req.body],
+   mysqlConnetion.query('INSERT INTO Actividad SET ?' , [req.body],
     (err, rows) =>{
         if(!err){
             res.json(rows);
@@ -50,7 +50,7 @@ const insertActividad =  async (req, res) => {
 
 const deleteActividad = (req, res) => {
     
-    mysqlConnetion.query('DELETE FROM ACTIVIDAD WHERE idActividad = ?', [req.params.id],
+    mysqlConnetion.query('DELETE FROM Actividad WHERE idActividad = ?', [req.params.id],
     (err, rows) =>{
         if(!err){
             res.json(rows);

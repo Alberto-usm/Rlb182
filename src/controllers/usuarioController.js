@@ -5,7 +5,7 @@ const bcryptjs = require('bcryptjs');
 const {promisify} = require('util');
 
 const viewUsers = async (req, res) => {
-    mysqlConnetion.query('SELECT * FROM USER', (err, rows, fields) =>{
+    mysqlConnetion.query("SELECT *, date_format(fechaNacimiento,'%e/%m/%Y') as fechaNacimiento, date_format(fechaIniciacion,'%e/%m/%Y') as fechaIniciacion FROM Usuario", (err, rows, fields) =>{
         if(!err){
             res.json(rows);
         }else{
@@ -16,7 +16,7 @@ const viewUsers = async (req, res) => {
 
 const viewOneUser = (req, res) => {
    
-       mysqlConnetion.query('SELECT * FROM USER WHERE idUser = ?',[req.params.id],
+       mysqlConnetion.query('SELECT * FROM Usuario WHERE idUser = ?',[req.params.id],
        (err,rows) => {
         if(!err){
             res.json(rows);
@@ -29,7 +29,7 @@ const viewOneUser = (req, res) => {
 
 const changeUser = ( req, res) => {
        
-    mysqlConnetion.query('UPDATE USER SET ? WHERE idUser = ?', [req.body,req.params.id],
+    mysqlConnetion.query('UPDATE Usuario SET ? WHERE idUser = ?', [req.body,req.params.id],
     (err, rows) =>{
         if(!err){
             res.json(rows);
@@ -49,7 +49,7 @@ const insertUser =  async (req, res) => {
     
     let passwordHash = await bcryptjs.hash(passwordUser, 9)
     
-    mysqlConnetion.query('INSERT INTO USER SET ?' , {rutUser: rutUser, nameUser:nameUser, passwordUser:passwordHash, rol:rol, grado:grado},
+    mysqlConnetion.query('INSERT INTO Usuario SET ?' , {rutUser: rutUser, nameUser:nameUser, passwordUser:passwordHash, rol:rol, grado:grado},
     (err, rows) =>{
         if(!err){
             res.json(rows);
@@ -62,7 +62,7 @@ const insertUser =  async (req, res) => {
 
 const deleteUser = (req, res) => {
     
-    mysqlConnetion.query('DELETE FROM USER WHERE idUser = ?', [req.params.id],
+    mysqlConnetion.query('DELETE FROM Usuario WHERE idUser = ?', [req.params.id],
     (err, rows) =>{
         if(!err){
             res.json(rows);

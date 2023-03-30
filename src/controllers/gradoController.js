@@ -3,7 +3,7 @@ const mysqlConnetion = require('../../config');
 const {promisify} = require('util');
 
 const viewGrados = (req, res) => {
-    mysqlConnetion.query('SELECT * FROM GRADO', (err, rows, fields) =>{
+    mysqlConnetion.query('SELECT * FROM Grado', (err, rows, fields) =>{
         if(!err){
             res.json(rows);
         }else{
@@ -14,7 +14,7 @@ const viewGrados = (req, res) => {
 
 const viewOneGrado = (req, res) => {
    
-    mysqlConnetion.query('SELECT * FROM GRADO WHERE idGrado = ?',[req.params.id],
+    mysqlConnetion.query('SELECT * FROM Grado WHERE idGrado = ?',[req.params.id],
     (err,rows) => {
      if(!err){
          res.json(rows);
@@ -25,7 +25,7 @@ const viewOneGrado = (req, res) => {
 };
 const changeGrado = ( req, res) => {
        
-    mysqlConnetion.query('UPDATE GRADO SET ? WHERE idGrado = ?', [req.body, req.params.id],
+    mysqlConnetion.query('UPDATE Grado SET ? WHERE idGrado = ?', [req.body, req.params.id],
     (err, rows) =>{
         if(!err){
             res.json(rows);
@@ -36,7 +36,7 @@ const changeGrado = ( req, res) => {
 }
 
 const insertGrado =  async (req, res) => {
-    mysqlConnetion.query('INSERT INTO GRADO SET ?' , [req.body],
+    mysqlConnetion.query('INSERT INTO Grado SET ?' , [req.body],
     (err, rows) =>{
         if(!err){
             res.json(rows);
@@ -49,7 +49,7 @@ const insertGrado =  async (req, res) => {
 
 const deleteGrado = (req, res) => {
     
-    mysqlConnetion.query('DELETE FROM GRADO WHERE idGrado = ?', [req.params.id],
+    mysqlConnetion.query('DELETE FROM Grado WHERE idGrado = ?', [req.params.id],
     (err, rows) =>{
         if(!err){
             res.json(rows);

@@ -5,7 +5,7 @@ const {promisify} = require('util');
 
 
 const viewCargo = (req, res) => {
-    mysqlConnetion.query('SELECT * FROM CARGO', (err, rows, fields) =>{
+    mysqlConnetion.query('SELECT * FROM Cargo', (err, rows, fields) =>{
         if(!err){
             res.json(rows);
         }else{
@@ -16,7 +16,7 @@ const viewCargo = (req, res) => {
 
 const viewOneCargo = (req, res) => {
    
-       mysqlConnetion.query('SELECT * FROM CARGO WHERE idCargo = ?',[req.params.id],
+       mysqlConnetion.query('SELECT * FROM Cargo WHERE idCargo = ?',[req.params.id],
        (err,rows) => {
         if(!err){
             res.json(rows);
@@ -27,7 +27,7 @@ const viewOneCargo = (req, res) => {
 };
 const changeCargo= ( req, res) => {
        
-    mysqlConnetion.query('UPDATE CARGO SET ? WHERE idCargo = ?', [req.body, req.params.id],
+    mysqlConnetion.query('UPDATE Cargo SET ? WHERE idCargo = ?', [req.body, req.params.id],
     (err, rows) =>{
         if(!err){
             res.json(rows);
@@ -39,7 +39,7 @@ const changeCargo= ( req, res) => {
 
 const insertCargo =  async (req, res) => {
                     
-    mysqlConnetion.query('INSERT INTO CARGO SET ?' , [req.body],
+    mysqlConnetion.query('INSERT INTO Cargo SET ?' , [req.body],
     (err, rows) =>{
         if(!err){
             res.json(rows);
@@ -51,7 +51,7 @@ const insertCargo =  async (req, res) => {
 
 const deleteCargo = (req, res) => {
     
-    mysqlConnetion.query('DELETE FROM CARGO WHERE idCargo = ?', [req.params.id],
+    mysqlConnetion.query('DELETE FROM Cargo WHERE idCargo = ?', [req.params.id],
     (err, rows) =>{
         if(!err){
             res.json(rows);

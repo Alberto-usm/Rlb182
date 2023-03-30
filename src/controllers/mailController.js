@@ -1,5 +1,7 @@
 const express = require('express');
 const nodeMailer = require('nodemailer');
+require ('dotenv').config({path: '.env'})
+
 const app = express();
 const bodyParser = require('body-parser');
 
@@ -12,14 +14,12 @@ app.use(bodyParser.json());
     
      let trasporter = nodeMailer.createTransport({
          
-         host:'smtp.hotmail.com',
-         post:587,
-         secure:false,
-         
-        /*service: 'gmail',    */
+         host:'premium99.web-hosting.com',
+         post:465,   
+         secure: true,      
          auth:{
-             user:'albertocabello64@hotmail.com',
-             pass:'AltMati2308'
+             user: 'info@labusqueda182.com',
+             pass:'AltRlb182t23'
          }
      });
 
@@ -32,7 +32,7 @@ app.use(bodyParser.json());
 
      trasporter.sendMail(mailOpciones,function(err,res){
         if(err) {
-            console.log('aqui')
+            console.log(req.body)
             console.log(err)
         }else{
             console.log('iii')
