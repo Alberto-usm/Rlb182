@@ -26,6 +26,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
+//app.use(express.static('documentos'));
 
 app.get('/', (req, res) => res.json('Servidor Running'));
   

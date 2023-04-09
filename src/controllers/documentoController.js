@@ -15,14 +15,14 @@ const viewDocumentos = (req, res) => {
 };
 
 const filterDocumentos = (req, res) => {
-    if (req.params.idGrado == '1'){
-        SQL= 'SELECT * FROM Documento WHERE idGrado IN(1)'
+    if (req.params.idGrado == 'A'){
+        SQL= "SELECT * FROM Documento WHERE idGrado IN('A')"
     }   
-    if(req.params.idGrado == '2'){
-            SQL= 'SELECT * FROM Documento WHERE idGrado IN(1,2)'
+    if(req.params.idGrado == 'C'){
+            SQL= "SELECT * FROM Documento WHERE idGrado IN('A','C')"
     }
-    if(req.params.idGrado == '3'){
-            SQL= 'SELECT * FROM Documento WHERE idGrado IN(1,2,3)' 
+    if(req.params.idGrado == 'M'){
+            SQL= "SELECT * FROM Documento WHERE idGrado IN('A','C','M')" 
     }
     
     mysqlConnetion.query(SQL,(err, rows, fields) =>{
@@ -111,14 +111,22 @@ const uploadDocumento = ( req, res) =>{
 } 
 
 const downloadDocumento = (req, res) => {
-    let filepath = 'documentos';
-    let filename = 'image.png'
-    res.download(filepath, filename);
-    
-    return res.status(200).json({
-        status: 'Success',
-        files: req.file
+    return res.status(404).json({
+        status: 'error',
+        mensaje:'Peticion Invalida'
     })
+    //res.download('./documento/ManualCompanero.pdf');
+    //let filepath = 'documentos';
+    //let filename = 'image.png'
+    //res.download('./documento/ManualCompanero.pdf');
+    //console.log('aqui back')
+    //if(err){
+    //    console.log(err)        
+    //}
+    //return res.status(200).json({
+    //    status: 'Success',
+    //    files: req.file
+    //})
 }
 
 module.exports = {

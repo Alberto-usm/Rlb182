@@ -5,7 +5,8 @@ const bcryptjs = require('bcryptjs');
 const {promisify} = require('util');
 
 const viewUsers = async (req, res) => {
-    mysqlConnetion.query("SELECT *, date_format(fechaNacimiento,'%e/%m/%Y') as fechaNacimiento, date_format(fechaIniciacion,'%e/%m/%Y') as fechaIniciacion FROM Usuario", (err, rows, fields) =>{
+    //mysqlConnetion.query("SELECT *, date_format(fechaNacimiento,'%e/%m/%Y') as fechaNacimiento, date_format(fechaIniciacion,'%e/%m/%Y') as fechaIniciacion FROM Usuario", (err, rows, fields) =>{
+    mysqlConnetion.query("SELECT *  FROM Usuario", (err, rows, fields) =>{    
         if(!err){
             res.json(rows);
         }else{
@@ -16,7 +17,8 @@ const viewUsers = async (req, res) => {
 
 const viewOneUser = (req, res) => {
    
-       mysqlConnetion.query('SELECT * FROM Usuario WHERE idUser = ?',[req.params.id],
+       //mysqlConnetion.query("SELECT *, date_format(fechaNacimiento, '%e/%m/%Y') as fechaNacimiento, date_format(fechaIniciacion,'%e/%m/%Y') as fechaIniciacion FROM Usuario WHERE idUser = ?",[req.params.id],
+       mysqlConnetion.query("SELECT * FROM Usuario WHERE idUser = ?",[req.params.id],
        (err,rows) => {
         if(!err){
             res.json(rows);
