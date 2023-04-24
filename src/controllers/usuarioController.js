@@ -3,6 +3,7 @@ const mysqlConnetion = require('../../config');
 const jwt = require('jsonwebtoken');
 const bcryptjs = require('bcryptjs');
 const {promisify} = require('util');
+//const { param } = require('../routes/usuario');
 
 const viewUsers = async (req, res) => {
     //mysqlConnetion.query("SELECT *, date_format(fechaNacimiento,'%e/%m/%Y') as fechaNacimiento, date_format(fechaIniciacion,'%e/%m/%Y') as fechaIniciacion FROM Usuario", (err, rows, fields) =>{
@@ -41,6 +42,23 @@ const changeUser = ( req, res) => {
     })
 }
 
+const changePassword = async ( req, res) => {
+    
+    const passwordUser = req.body.passwordUser    
+    let passwordHash = await bcryptjs.hash(passwordUser, 9)
+    /*
+    mysqlConnetion.query('UPDATE Usuario SET ?',{passwordUser: passwordHash} ,'WHERE idUser = ?', [],     
+    (err, rows) =>{
+        if(!err){
+            res.json(rows);
+        }else{
+            console.log(err);
+        }
+    })
+   */
+}
+
+
 const insertUser =  async (req, res) => {
       
     const rutUser = req.body.rutUser
@@ -78,6 +96,7 @@ module.exports = {
     viewUsers,
     viewOneUser,
     changeUser,
+    changePassword,
     insertUser,
     deleteUser
     
