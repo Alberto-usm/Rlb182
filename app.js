@@ -21,6 +21,7 @@ const tenidaRouter = require('./src/routes/tenida');
 
 
 //para procesar datos enviados desde forms
+app.use(express.static('documentos'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.urlencoded({extended:true}));
 app.use(bodyParser.json());

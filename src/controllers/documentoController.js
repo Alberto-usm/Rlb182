@@ -40,6 +40,7 @@ const viewOneDocumento = (req, res) => {
     (err,rows) => {
      if(!err){
          res.json(rows);
+    
      }else{
          console.log(err);
      }
@@ -112,22 +113,21 @@ const uploadDocumento = ( req, res) =>{
 
 const downloadDocumento = async(req, res) => {
     
-    return res.status(404).json({
-        status: 'error',
-        mensaje:'Peticion Invalida'
-    })
-    //res.download('./documento/ManualCompanero.pdf');
+    console.log('download')
+    
+    res.download('./documentos/ManualCompanero.pdf');
     //let filepath = 'documentos';
     //let filename = 'image.png'
     //res.download('./documento/ManualCompanero.pdf');
     //console.log('aqui back')
-    //if(err){
-    //    console.log(err)        
-    //}
+    if(err){
+        console.log(err)        
+    }
     //return res.status(200).json({
     //    status: 'Success',
     //    files: req.file
     //})
+    
 }
 
 module.exports = {

@@ -22,7 +22,7 @@ router.post('/', documentoController.insertDocumento);
 router.delete('/:id', documentoController.deleteDocumento);
 router.get('/:id', documentoController.viewOneDocumento);
 router.post('/upload', [subida.single('file0')], documentoController.uploadDocumento);
-router.get('/download/', documentoController.downloadDocumento);
+router.get('/download', documentoController.downloadDocumento);
 
 
 

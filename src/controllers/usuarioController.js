@@ -43,19 +43,18 @@ const changeUser = ( req, res) => {
 }
 
 const changePassword = async ( req, res) => {
+    const passwordUserCh = req.body.passwordUser    
+    let passwordHash = await bcryptjs.hash(passwordUserCh, 9)
     
-    const passwordUser = req.body.passwordUser    
-    let passwordHash = await bcryptjs.hash(passwordUser, 9)
-    /*
-    mysqlConnetion.query('UPDATE Usuario SET ?',{passwordUser: passwordHash} ,'WHERE idUser = ?', [],     
-    (err, rows) =>{
+    mysqlConnetion.query('UPDATE Usuario SET passwordUser = ? WHERE idUser = ?', [passwordHash, req.params.id],        
+    (err, rows) =>{    
         if(!err){
             res.json(rows);
         }else{
             console.log(err);
         }
     })
-   */
+   
 }
 
 

@@ -27,6 +27,8 @@ const viewOneTenida = (req, res) => {
         }
     })    
 };
+
+
 const changeTenida = ( req, res) => {
         
     mysqlConnetion.query('UPDATE Tenida SET ? WHERE idTenida = ?', [req.body, req.params.id],
