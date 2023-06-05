@@ -22,24 +22,30 @@ const tenidaRouter = require('./src/routes/tenida');
 
 //para procesar datos enviados desde forms
 app.use(express.static('documentos'));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
-//app.use(express.static('documentos'));
+
 
 app.get('/', (req, res) => res.json('Servidor Running'));
+
+app.get('/bajarArchivo', (req, res) => {
+    res.download('./documentos/BateriaSignosPalabra.docx')
+})
   
-app.use('/actividad',actividadRoute);
-app.use('/cargo',cargoRoute);
-app.use('/usuario',usuarioRoute);
-app.use('/grado',gradoRoute);
-app.use('/camara',camaraRoute);
-app.use('/documento',documentoRoute);
-app.use('/correo',correoRouter);
-app.use('/login',logindRouter);
-app.use('/tenida',tenidaRouter);
+
+
+app.use('/api/actividad',actividadRoute);
+app.use('/api/cargo',cargoRoute);
+app.use('/api/usuario',usuarioRoute);
+app.use('/api/grado',gradoRoute);
+app.use('/api/camara',camaraRoute);
+app.use('/api/documento',documentoRoute);
+app.use('/api/correo',correoRouter);
+app.use('/api/login',logindRouter);
+app.use('/api/tenida',tenidaRouter);
 
 
 

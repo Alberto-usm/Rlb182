@@ -17,12 +17,13 @@ const subida = multer({storage:storage});
 
 router.get('/', documentoController.viewDocumentos);
 router.get('/filtro/:idGrado', documentoController.filterDocumentos);
+router.get('/bajada/:filename', documentoController.bajadaDocumento);
 router.put('/:id', documentoController.changeDocumento);
 router.post('/', documentoController.insertDocumento);
 router.delete('/:id', documentoController.deleteDocumento);
 router.get('/:id', documentoController.viewOneDocumento);
 router.post('/upload', [subida.single('file0')], documentoController.uploadDocumento);
-router.get('/download', documentoController.downloadDocumento);
+
 
 
 

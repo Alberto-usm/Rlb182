@@ -15,10 +15,11 @@ const viewTenida = (req, res) => {
 
 const viewOneTenida = (req, res) => {
    
-       console.log(req.body)
-       console.log('ViewOne')       
+       console.log(req.body)       
+       console.log(req.params.id)       
        /*mysqlConnetion.query('SELECT * FROM Tenida WHERE idTenida = ?',[req.params.id]*/
-       mysqlConnetion.query('SELECT * FROM Tenida WHERE idUser = ? and idActividad = ?',[req.body.idUser, req.body.idActividad],
+       /*mysqlConnetion.query('SELECT * FROM Tenida WHERE idUser = ? and idActividad = ?',[req.body.idUser, req.body.idActividad],*/
+       mysqlConnetion.query('SELECT * FROM Tenida WHERE idUser = ? and idActividad = ?',[req.params.id, req.body.idActividad],
        (err,rows) => {
         if(!err){
             res.json(rows);

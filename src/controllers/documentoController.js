@@ -1,7 +1,8 @@
 const express = require('express');
 const mysqlConnetion = require('../../config');
 const {promisify} = require('util');
-const fs = require('fs');
+const { join } = require('path');
+const { param } = require('../routes/actividad');
 
 
 const viewDocumentos = (req, res) => {
@@ -82,6 +83,14 @@ const deleteDocumento = (req, res) => {
     })
 }
 
+const bajadaDocumento = (req, res) => {
+    let archivo = './documentos';
+    let nombre = req.params.filename;
+    let ruta = archivo + '/' + nombre;   
+    res.download(ruta)
+    
+}  
+
 const uploadDocumento = ( req, res) =>{
 
     //Configurar multer
@@ -110,33 +119,16 @@ const uploadDocumento = ( req, res) =>{
     })
     }
 } 
-
-const downloadDocumento = async(req, res) => {
     
-    console.log('download')
-    
-    res.download('./documentos/ManualCompanero.pdf');
-    //let filepath = 'documentos';
-    //let filename = 'image.png'
-    //res.download('./documento/ManualCompanero.pdf');
-    //console.log('aqui back')
-    if(err){
-        console.log(err)        
-    }
-    //return res.status(200).json({
-    //    status: 'Success',
-    //    files: req.file
-    //})
-    
-}
 
 module.exports = {
     viewDocumentos,
     filterDocumentos,
+    bajadaDocumento,
     viewOneDocumento,
     changeDocumento,
     insertDocumento,
     deleteDocumento,
     uploadDocumento,
-    downloadDocumento
+   
 }

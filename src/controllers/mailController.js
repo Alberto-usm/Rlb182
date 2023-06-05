@@ -14,13 +14,18 @@ app.use(bodyParser.json());
     
      let trasporter = nodeMailer.createTransport({
          
-         host:'premium99.web-hosting.com',
-         post:465,   
+         //host:'premium99.web-hosting.com',
+         host:'smtp.gmail.com',
+         //post:465,
+         post:587,  
          secure: true,      
          auth:{
-             user: 'info@labusqueda182.com',
-             pass:'AltRlb182t23'
-         }
+             //user: 'info@labusqueda182.com',
+             //pass:'#L3@R4cIn*6M'
+             user:'alberto.cabello64@gmail.com',
+             pass:'AltMati2308'
+         },
+         connectionTimeout: 30000
      });
 
      const mailOpciones = {
