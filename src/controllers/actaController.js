@@ -6,8 +6,8 @@ const { param } = require('../routes/actividad');
 const multer = require('multer');
 
 
-const viewDocumentos = (req, res) => {
-    mysqlConnetion.query('SELECT * FROM Documento', (err, rows, fields) =>{
+const viewActas = (req, res) => {
+    mysqlConnetion.query('SELECT * FROM Acta', (err, rows, fields) =>{
         if(!err){
             res.json(rows);
         }else{
@@ -16,15 +16,15 @@ const viewDocumentos = (req, res) => {
     })  
 };
 
-const filterDocumentos = (req, res) => {
+const filterActas = (req, res) => {
     if (req.params.idGrado == 'A'){
-        SQL= "SELECT * FROM Documento WHERE idGrado IN('A')"
+        SQL= "SELECT * FROM Acta WHERE idGrado IN('A')"
     }   
     if(req.params.idGrado == 'C'){
-            SQL= "SELECT * FROM Documento WHERE idGrado IN('A','C')"
+            SQL= "SELECT * FROM Acta WHERE idGrado IN('A','C')"
     }
     if(req.params.idGrado == 'M'){
-            SQL= "SELECT * FROM Documento WHERE idGrado IN('A','C','M')" 
+            SQL= "SELECT * FROM Acta WHERE idGrado IN('A','C','M')" 
     }
     
     mysqlConnetion.query(SQL,(err, rows, fields) =>{
@@ -36,9 +36,9 @@ const filterDocumentos = (req, res) => {
     })  
 };
 
-const viewOneDocumento = (req, res) => {
+const viewOneActa = (req, res) => {
    
-    mysqlConnetion.query('SELECT * FROM Documento WHERE idDoc = ?',[req.params.id],
+    mysqlConnetion.query('SELECT * FROM Acta WHERE idAct = ?',[req.params.id],
     (err,rows) => {
      if(!err){
          res.json(rows);
@@ -48,9 +48,9 @@ const viewOneDocumento = (req, res) => {
      }
  })    
 };
-const changeDocumento = ( req, res) => {
+const changeActa = ( req, res) => {
        
-    mysqlConnetion.query('UPDATE Documento SET ? WHERE idDoc = ?', [req.body, req.params.id],
+    mysqlConnetion.query('UPDATE Acta SET ? WHERE idAct = ?', [req.body, req.params.id],
     (err, rows) =>{
         if(!err){
             res.json(rows);
@@ -60,8 +60,8 @@ const changeDocumento = ( req, res) => {
     })
 }
 
-const insertDocumento =  async (req, res) => {
-    mysqlConnetion.query('INSERT INTO Documento SET ?' , [req.body],
+const insertActa =  async (req, res) => {
+    mysqlConnetion.query('INSERT INTO Acta SET ?' , [req.body],
     (err, rows) =>{
         if(!err){
             res.json(rows);
@@ -72,9 +72,9 @@ const insertDocumento =  async (req, res) => {
   
 };
 
-const deleteDocumento = (req, res) => {
+const deleteActa = (req, res) => {
     
-    mysqlConnetion.query('DELETE FROM Documento WHERE idDoc = ?', [req.params.id],
+    mysqlConnetion.query('DELETE FROM Acta WHERE idAct = ?', [req.params.id],
     (err, rows) =>{
         if(!err){
             res.json(rows);
@@ -84,7 +84,7 @@ const deleteDocumento = (req, res) => {
     })
 }
 
-const bajadaDocumento = (req, res) => {
+const bajadaActa = (req, res) => {
     let archivo = './documentos';
     let nombre = req.params.filename;
     let ruta = archivo + '/' + nombre;   
@@ -104,21 +104,21 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage})
 const subida = upload.single('myFile');
 
-const uploadDocumento = ( req, res) =>{
+const uploadActa = ( req, res) =>{
 
       res.json('Enviando archivo')  
    
 } 
    
 module.exports = {
-    viewDocumentos,
-    filterDocumentos,
-    bajadaDocumento,
-    viewOneDocumento,
-    changeDocumento,
-    insertDocumento,
-    deleteDocumento,
-    uploadDocumento,
+    viewActas,
+    filterActas,
+    bajadaActa,
+    viewOneActa,
+    changeActa,
+    insertActa,
+    deleteActa,
+    uploadActa,
     subida
    
 }

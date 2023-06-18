@@ -9,6 +9,7 @@ const session = require("express-session");
 const actividadRoute = require('./src/routes/actividad');
 const usuarioRoute = require('./src/routes/usuario');
 const documentoRoute = require('./src/routes/documento');
+const actaRoute = require('./src/routes/acta');
 const cargoRoute = require('./src/routes/cargo');
 const gradoRoute = require('./src/routes/grado');
 const camaraRoute = require('./src/routes/camara');
@@ -31,11 +32,6 @@ app.use(cors());
 
 app.get('/', (req, res) => res.json('Servidor Running'));
 
-app.get('/bajarArchivo', (req, res) => {
-    res.download('./documentos/BateriaSignosPalabra.docx')
-})
-  
-
 
 app.use('/api/actividad',actividadRoute);
 app.use('/api/cargo',cargoRoute);
@@ -43,6 +39,7 @@ app.use('/api/usuario',usuarioRoute);
 app.use('/api/grado',gradoRoute);
 app.use('/api/camara',camaraRoute);
 app.use('/api/documento',documentoRoute);
+app.use('/api/acta',actaRoute);
 app.use('/api/correo',correoRouter);
 app.use('/api/login',logindRouter);
 app.use('/api/tenida',tenidaRouter);
